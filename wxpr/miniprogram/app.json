@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/lego/login/login",
+    "pages/lego/member_manager/member_manager",
+    "pages/lego/consume_manager/consume_manager",
+    "pages/lego/member_add/member_add",
+    "pages/lego/personal_message/personal_message",
+    "pages/lego/start_play/start_play",
+    "pages/lego/member_info/member_info",
+    "pages/lego/modify_secphone/modify_secphone",
+    "pages/lego/renewal/renewal",
+    "pages/lego/member_history/member_history"
+  ],
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#268dcd",
+    "borderStyle": "white",
+    "backgroundColor": "#fafafa",
+    "list": [
+      {
+        "pagePath": "pages/lego/consume_manager/consume_manager",
+        "iconPath": "/images/ing.png",
+        "selectedIconPath": "/images/ing_active.png",
+        "text": "消费管理"
+      },
+      {
+        "pagePath": "pages/lego/member_add/member_add",
+        "iconPath": "/images/coming.png",
+        "selectedIconPath": "/images/coming_active.png",
+        "text": "添加会员"
+      },
+      {
+        "pagePath": "pages/lego/member_manager/member_manager",
+        "iconPath": "/images/coming.png",
+        "selectedIconPath": "/images/coming_active.png",
+        "text": "会员管理"
+      },
+      {
+        "pagePath": "pages/lego/personal_message/personal_message",
+        "iconPath": "/images/coming.png",
+        "selectedIconPath": "/images/coming_active.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#26cd58",
+    "navigationBarTitleText": "聚玩乐高",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}

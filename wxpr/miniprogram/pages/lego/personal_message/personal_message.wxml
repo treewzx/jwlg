@@ -1,0 +1,11 @@
+<!--miniprogram/pages/lego/personal_message/personal_message.wxml-->
+ <view class='container'>
+    <text class='title'>账号：</text>
+    <text class='content-text'>{{account}}</text>
+  </view>
+   <view class='container'>
+    <text class='title'>姓名：</text>
+    <text class='content-text'>{{username}}</text>
+  </view>
+
+   <button class='submit-btn' bindtap='logout'>退出登录</button>
