@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    modalHidden: true, //是否隐藏对话框
     deskList: [],
     toyId: "--",
     startTime: "--",
@@ -25,11 +26,45 @@ Page({
     })
   },
 
+  //暂停游戏
+  pausePlay: function(e) {
+    var deskId = parseInt(e.currentTarget.id);
+    var params = {
+      id: deskId
+    }
+    netUtil.postRequest("xiaofei/stopGame", params, this.onDialogStart, this.onPauseSuccess, this.onFailed);
+
+  },
+  //继续游戏
+  continuePlay: function(e) {
+    var deskId = parseInt(e.currentTarget.id);
+    var params = {
+      id: deskId
+    }
+    netUtil.postRequest("xiaofei/secondStartGame", params, this.onDialogStart, this.onContinueSuccess, this.onFailed);
+  },
+
+  //结束游戏
+  stopPlay: function(e) {
+    var deskId = parseInt(e.currentTarget.id);
+    var params = {
+      id: deskId
+    }
+    netUtil.postRequest("xiaofei/endGame", params, this.onDialogStart, this.onEndSuccess, this.onFailed);
+  },
+  //更换玩具
+  changeToy:function(e){
+    var deskId = parseInt(e.currentTarget.id);
+    var toyId = this.data.deskList[deskId-1].number;
+    wx.navigateTo({
+      url: '../change_toy/change_toy?deskId='+deskId+"&toyId="+toyId,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-  
+
   },
 
   /**
@@ -95,6 +130,7 @@ Page({
   },
 
   onFailed: function(msg) { //onFailed回调
+    wx.hideLoading();
     if (msg.match("token")) {
       wx.setStorageSync("token", "");
       wx.setStorageSync("userId", "");
@@ -107,10 +143,33 @@ Page({
       })
     }
   },
-});
-function CountTime() {
-  timer = setTimeout(function () {
-    console.log("----Countdown----");
-    Countdown();
-  }, 1000);
-};
+
+  onDialogStart: function() {
+    wx.showLoading({
+      title: '正在加载',
+    })
+  },
+  onPauseSuccess: function(res) {
+    wx.hideLoading();
+    wx.showToast({
+      title: '暂停成功',
+    })
+
+    netUtil.postRequest("xiaofei/deskList", {}, this.onStart, this.onSuccess, this.onFailed);
+  },
+  onContinueSuccess: function(res) {
+    wx.hideLoading();
+    wx.showToast({
+      title: '继续成功',
+    })
+    netUtil.postRequest("xiaofei/deskList", {}, this.onStart, this.onSuccess, this.onFailed);
+  },
+  onEndSuccess: function (res) {
+    wx.hideLoading();
+    wx.showToast({
+      title: '结束游戏成功',
+    })
+    netUtil.postRequest("xiaofei/deskList", {}, this.onStart, this.onSuccess, this.onFailed);
+  },
+
+})

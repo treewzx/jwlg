@@ -21,10 +21,10 @@
             <text class='deskInfo'>剩余时长：{{item.surplusLength}}分钟</text>
           </view>
           <view class='row_center'>
-            <text class='button' catchtap='startPlay' id='{{item.id}}' >开始</text>
-            <text class='button'></text>
-            <text class='button'></text>
-            <text class='button'></text>
+            <text class='button' catchtap='pausePlay' id='{{item.id}}'>暂停</text>
+            <text class='button' catchtap='changeToy' id='{{item.id}}' >换套餐</text>
+            <text class='button' catchtap='stopPlay' id='{{item.id}}'>结束</text>
+            <text class='button' catchtap='detailPlay' id='{{item.id}}'>详情</text>
           </view>
         </view>
       </view>
@@ -42,63 +42,36 @@
             <text class='deskInfo'>剩余时长：{{item.surplusLength}}分钟</text>
           </view>
           <view class='row_center'>
-            <text class='button' catchtap='startPlay' id='{{item.id}}' >开始</text>
-            <text class='button'></text>
-            <text class='button'></text>
-            <text class='button'></text>
+            <text class='button' catchtap='pausePlay' id='{{item.id}}'>暂停</text>
+            <text class='button' catchtap='changeToy' id='{{item.id}}'>换套餐</text>
+            <text class='button' catchtap='stopPlay' id='{{item.id}}'>结束</text>
+            <text class='button' catchtap='detailPlay' id='{{item.id}}'>详情</text>
           </view>
         </view>
       </view>
     </view>
-
-
   </view>
 
   <view wx:if="{{item.status == '1'}}">
     <view class='divline' />
-
-    <view wx:if="{{item.surplusLength<600}}">
-      <view class='row_center' style="background:red;">
-        <text class='deskNum'>{{item.deskName}}</text>
-        <view class='deskInfo_cloumn_flex'>
-          <text class='customerInfo'>开始时间：{{item.startTime}}</text>
-          <text class='customerInfo'>玩具编号：{{item.number}}</text>
-          <text class='customerInfo'>客户信息：{{item.huiyuan}}</text>
-          <view class='row_center'>
-            <text class='deskInfo'>消费时长：{{item.xiaofeiTime}}分钟</text>
-            <text class='deskInfo'>剩余时长：{{item.surplusLength}}分钟</text>
-          </view>
-          <view class='row_center'>
-            <text class='button' catchtap='startPlay' id='{{item.id}}'>开始</text>
-            <text class='button'></text>
-            <text class='button'></text>
-            <text class='button'></text>
-          </view>
+    <view class='row_center' style="background:orange;">
+      <text class='deskNum'>{{item.deskName}}</text>
+      <view class='deskInfo_cloumn_flex'>
+        <text class='customerInfo'>开始时间：{{item.startTime}}</text>
+        <text class='customerInfo'>玩具编号：{{item.number}}</text>
+        <text class='customerInfo'>客户信息：{{item.huiyuan}}</text>
+        <view class='row_center'>
+          <text class='deskInfo'>消费时长：{{item.xiaofeiTime}}分钟</text>
+          <text class='deskInfo'>剩余时长：{{item.surplusLength}}分钟</text>
+        </view>
+        <view class='row_center'>
+          <text class='button' catchtap='continuePlay' id='{{item.id}}'>继续</text>
+          <text class='button' catchtap='changeToy' id='{{item.id}}'>换套餐</text>
+          <text class='button' catchtap='stopPlay' id='{{item.id}}'>结束</text>
+          <text class='button' catchtap='detailPlay' id='{{item.id}}'>详情</text>
         </view>
       </view>
     </view>
-
-    <view wx:if="{{item.surplusLength>600}}">
-      <view class='row_center' style="background:orange;">
-        <text class='deskNum'>{{item.deskName}}</text>
-        <view class='deskInfo_cloumn_flex'>
-          <text class='customerInfo'>开始时间：{{item.startTime}}</text>
-          <text class='customerInfo'>玩具编号：{{item.number}}</text>
-          <text class='customerInfo'>客户信息：{{item.huiyuan}}</text>
-          <view class='row_center'>
-            <text class='deskInfo'>消费时长：{{item.xiaofeiTime}}分钟</text>
-            <text class='deskInfo'>剩余时长：{{item.surplusLength}}分钟</text>
-          </view>
-          <view class='row_center'>
-            <text class='button' catchtap='startPlay' id='{{item.id}}'>开始</text>
-            <text class='button'></text>
-            <text class='button'></text>
-            <text class='button'></text>
-          </view>
-        </view>
-      </view>
-    </view>
-
   </view>
 
   <view wx:if="{{item.status == '2'}}">
@@ -114,10 +87,10 @@
           <text class='deskInfo'>剩余时长：{{item.surplusLength}}分钟</text>
         </view>
         <view class='row_center'>
-          <text class='button' catchtap='startPlay' id='{{item.id}}' >开始</text>
-          <text class='button' hidden='true' style='display:block'>换套餐</text>
-          <text class='button'>结束</text>
-          <text class='button'>详情</text>
+          <text class='button' catchtap='startPlay' id='{{item.id}}'>开始</text>
+          <text class='button'></text>
+          <text class='button'></text>
+          <text class='button'></text>
         </view>
       </view>
     </view>
