@@ -6,19 +6,69 @@ Page({
    * 页面的初始数据
    */
   data: {
-    array: ['请选择','1', '2', '3', '4','5'],
-    jifenindex: 0,
+    array: ['请选择', 1, 2, 3, 4, 5],
+    guanchaindex: "0",
+    kongjianindex: "0",
+    zhuanzhuindex: "0",
+    guifanindex: "0",
+    wanzhengindex: "0",
+    kangcuoindex: "0",
+    goutongindex: "0",
     deskId: "",
     deskInfo: "",
-    usedTime: 0,
-    quan: 0,
-    jifen: 0,
+    usedTime: "0",
+    quan: "0",
+    jifen: "0",
     detailList: [],
   },
-
+  usedTimeInput: function(e) {
+    this.setData({
+      usedTime: e.detail.value
+    })
+  },
+  quanInput: function(e) {
+    this.setData({
+      quan: e.detail.value
+    })
+  },
+  jifenInput: function(e) {
+    this.setData({
+      jifen: e.detail.value
+    })
+  },
   guanchaChange: function(e) {
     this.setData({
-      jifenindex: e.detail.value
+      guanchaindex: e.detail.value
+    })
+  },
+  zhuanzhuChange: function(e) {
+    this.setData({
+      zhuanzhuindex: e.detail.value
+    })
+  },
+  kongjianChange: function(e) {
+    this.setData({
+      kongjianindex: e.detail.value
+    })
+  },
+  guifanChange: function(e) {
+    this.setData({
+      guifanindex: e.detail.value
+    })
+  },
+  wanzhengChange: function(e) {
+    this.setData({
+      wanzhengindex: e.detail.value
+    })
+  },
+  kangcuoChange: function(e) {
+    this.setData({
+      kangcuoindex: e.detail.value
+    })
+  },
+  goutongChange: function(e) {
+    this.setData({
+      goutongindex: e.detail.value
     })
   },
   /**
@@ -33,6 +83,23 @@ Page({
     }
     netUtil.postRequest("xiaofei/beforehandEndGame", params, this.onStart, this.onSuccess, this.onFailed);
 
+  },
+
+  stopGame: function(e) {
+    var params = {
+      id: this.data.deskId,
+      xiaofeiTime: this.data.usedTime,
+      couponNumber: this.data.quan,
+      integral: this.data.jifen,
+      guancha: (this.data.guanchaindex != "0" ? this.data.guanchaindex : "5"),
+      goutong: (this.data.goutongindex != "0" ? this.data.goutongindex : "5"),
+      guifan: (this.data.guifanindex != "0" ? this.data.guifanindex : "5"),
+      kangcuozhe: (this.data.kangcuoindex != "0" ? this.data.kangcuoindex : "5"),
+      kongjian: (this.data.kongjianindex != "0" ? this.data.kongjianindex : "5"),
+      wanzheng: (this.data.wanzhengindex != "0" ? this.data.wanzhengindex : "5"),
+      zhuanzhu: (this.data.zhuanzhuindex != "0" ? this.data.zhuanzhuindex : "5"),
+    }
+    netUtil.postRequest("xiaofei/endGame", params, this.onStart, this.onEndSuccess, this.onFailed);
   },
 
   /**
@@ -98,6 +165,13 @@ Page({
       countUsedTime: res.endGame.xiaofeiTime,
       detailList: res.detailList,
     })
+  },
+  onEndSuccess: function(res) { //onSuccess回调
+    wx.showToast({
+      title: '结束成功',
+    })
+    wx.navigateBack({})
+
   },
   onFailed: function(msg) { //onFailed回调
     if (msg.match("token")) {

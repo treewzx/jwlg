@@ -58,6 +58,7 @@ Page({
     //缓存token 和userId
     wx.setStorageSync("userId", data.userId);
     wx.setStorageSync("token", data.token);
+    wx.setStorageSync("isAdmin", data.isAdmin);
     //进入主页面
     wx.switchTab({
       url: '../member_add/member_add',

@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isMember: 0,
+    isMember: true,
     deskNum: 1,
     deskId: 1,
     userId: "",
@@ -33,7 +33,7 @@ Page({
   },
   memberChange: function(e) {
     this.setData({
-      isMember: (e.detail.value === "member" ? 0 : 1)
+      isMember: (e.detail.value === "member" ? true : false)
     })
   },
   userInput: function(e) {
@@ -45,6 +45,16 @@ Page({
   toyNumInput: function(e) {
     this.setData({
       toyNum: e.detail.value
+    })
+  },
+  noMembePhoneInput: function(e) {
+    this.setData({
+      noMemberPhone: e.detail.value
+    })
+  },
+  noMembeNameInput: function(e) {
+    this.setData({
+      noMembername: e.detail.value
     })
   },
 
@@ -71,7 +81,7 @@ Page({
     })
     if (this.data.toyNum.length == 0) {
       Toast.showToast({
-        title: '玩具不存在或已占用',
+        title: '请输入玩具编码',
         duration: 2000
       })
     } else {
@@ -84,7 +94,7 @@ Page({
   },
 
   startPlay: function() {
-    if (this.data.isMember == 0) {
+    if (this.data.isMember) {
       //会员
       if (!this.data.userCanStart) {
         Toast.showToast({
@@ -95,7 +105,7 @@ Page({
       }
       if (!this.data.toyCanStart) {
         Toast.showToast({
-          title: '请确保玩具套餐存在并可使用',
+          title: '请先校验玩具确保玩具存在',
           duration: 2000
         })
         return;
@@ -109,7 +119,21 @@ Page({
       netUtil.postRequest("xiaofei/startGame", params, this.onStart, this.onStartGameSuccess, this.onFailed);
 
     } else {
-
+      if (!this.data.toyCanStart) {
+        Toast.showToast({
+          title: '请先校验玩具确保玩具存在',
+          duration: 2000
+        })
+        return;
+      }
+      var params = {
+        type: 1,
+        wjId: this.data.toyId,
+        zid: this.data.deskId,
+        name: this.data.noMembername,
+        phone: this.data.noMemberPhone,
+      }
+      netUtil.postRequest("xiaofei/startGame", params, this.onStart, this.onStartGameSuccess, this.onFailed);
     }
 
 

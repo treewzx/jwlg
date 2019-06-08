@@ -29,8 +29,8 @@
 <view class='container'>
   <text space="ensp" class='inputTitle'>观察力：  </text>
   <view class='content'>
-    <picker bindchange="guanchaChange" value="{{jifenindex}}" range="{{array}}">
-      <view>{{array[jifenindex]}}</view>
+    <picker bindchange="guanchaChange" value="{{guanchaindex}}" range="{{array}}">
+      <view>{{array[guanchaindex]}}</view>
     </picker>
   </view>
 
@@ -38,32 +38,56 @@
 </view>
 <view class='container'>
   <text space="ensp" class='inputTitle'>专注力：  </text>
-  <input class='content' placeholder='1-5分' type='number' value='{{guancha}}' bindinput="guanchaInput"></input>
+   <view class='content'>
+    <picker bindchange="zhuanzhuChange" value="{{zhuanzhuindex}}" range="{{array}}">
+      <view>{{array[zhuanzhuindex]}}</view>
+    </picker>
+  </view>
   <text>分</text>
 </view>
 <view class='container'>
   <text class='inputTitle'>空间辨识：</text>
-  <input class='content' placeholder='1-5分' type='number' value='{{guancha}}' bindinput="guanchaInput"></input>
+   <view class='content'>
+    <picker bindchange="kongjianChange" value="{{kongjianindex}}" range="{{array}}">
+      <view>{{array[kongjianindex]}}</view>
+    </picker>
+  </view>
   <text>分</text>
 </view>
 <view class='container'>
   <text space="ensp" class='inputTitle'>规范性：  </text>
-  <input class='content' placeholder='1-5分' type='number' value='{{guancha}}' bindinput="guanchaInput"></input>
+  <view class='content'>
+    <picker bindchange="guifanChange" value="{{guifanindex}}" range="{{array}}">
+      <view>{{array[guifanindex]}}</view>
+    </picker>
+  </view>
   <text>分</text>
 </view>
 <view class='container'>
   <text space="ensp" class='inputTitle'>完整性：  </text>
-  <input class='content' placeholder='1-5分' type='number' value='{{guancha}}' bindinput="guanchaInput"></input>
+   <view class='content'>
+    <picker bindchange="wanzhengChange" value="{{wanzhengindex}}" range="{{array}}">
+      <view>{{array[wanzhengindex]}}</view>
+    </picker>
+  </view>
   <text>分</text>
 </view>
 <view class='container'>
   <text space="ensp" class='inputTitle'>抗挫折：  </text>
-  <input class='content' placeholder='1-5分' type='number' value='{{guancha}}' bindinput="guanchaInput"></input>
+   <view class='content'>
+    <picker bindchange="kangcuoChange" value="{{kangcuoindex}}" range="{{array}}">
+      <view>{{array[kangcuoindex]}}</view>
+    </picker>
+  </view>
   <text>分</text>
 </view>
 <view class='container'>
   <text class='inputTitle'>沟通能力：</text>
-  <input class='content' placeholder='1-5分' type='number' value='{{guancha}}' bindinput="guanchaInput"></input>
+  <view class='content'>
+    <picker bindchange="goutongChange" value="{{goutongindex}}" range="{{array}}">
+      <view>{{array[goutongindex]}}</view>
+    </picker>
+  </view>
   <text>分</text>
 </view>
 
