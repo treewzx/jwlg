@@ -10,7 +10,9 @@
     "pages/lego/modify_secphone/modify_secphone",
     "pages/lego/renewal/renewal",
     "pages/lego/member_history/member_history",
-    "pages/lego/change_toy/change_toy"
+    "pages/lego/change_toy/change_toy",
+    "pages/lego/play_detail/play_detail",
+    "pages/lego/end_play/end_play"
   ],
   "tabBar": {
     "color": "#666",

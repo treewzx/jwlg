@@ -47,17 +47,23 @@ Page({
   //结束游戏
   stopPlay: function(e) {
     var deskId = parseInt(e.currentTarget.id);
-    var params = {
-      id: deskId
-    }
-    netUtil.postRequest("xiaofei/endGame", params, this.onDialogStart, this.onEndSuccess, this.onFailed);
+    var deskInfo = JSON.stringify(this.data.deskList[deskId - 1]);
+    wx.navigateTo({
+      url: '../end_play/end_play?deskId=' + deskId + "&deskInfo=" + deskInfo,
+    })
   },
   //更换玩具
-  changeToy:function(e){
+  changeToy: function(e) {
     var deskId = parseInt(e.currentTarget.id);
-    var toyId = this.data.deskList[deskId-1].number;
+    var toyId = this.data.deskList[deskId - 1].number;
     wx.navigateTo({
-      url: '../change_toy/change_toy?deskId='+deskId+"&toyId="+toyId,
+      url: '../change_toy/change_toy?deskId=' + deskId + "&toyId=" + toyId,
+    })
+  },
+  detailPlay: function(e) {
+    var deskId = parseInt(e.currentTarget.id);
+    wx.navigateTo({
+      url: '../play_detail/play_detail?deskId=' + deskId,
     })
   },
   /**
@@ -164,7 +170,7 @@ Page({
     })
     netUtil.postRequest("xiaofei/deskList", {}, this.onStart, this.onSuccess, this.onFailed);
   },
-  onEndSuccess: function (res) {
+  onEndSuccess: function(res) {
     wx.hideLoading();
     wx.showToast({
       title: '结束游戏成功',
